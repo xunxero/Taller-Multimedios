@@ -1,0 +1,194 @@
+PGDMP     !    $                y            Memo    13.3    13.3 3    Ú           0    0    ENCODING    ENCODING        SET client_encoding = 'UTF8';
+                      false            Û           0    0 
+   STDSTRINGS 
+   STDSTRINGS     (   SET standard_conforming_strings = 'on';
+                      false            Ù           0    0 
+   SEARCHPATH 
+   SEARCHPATH     8   SELECT pg_catalog.set_config('search_path', '', false);
+                      false            ı           1262    16394    Memo    DATABASE     b   CREATE DATABASE "Memo" WITH TEMPLATE = template0 ENCODING = 'UTF8' LOCALE = 'Spanish_Spain.1252';
+    DROP DATABASE "Memo";
+                postgres    false            ‘            1259    16458    apuntes    TABLE     *  CREATE TABLE public.apuntes (
+    id integer NOT NULL,
+    contenido_id integer NOT NULL,
+    nombre character varying(255) NOT NULL,
+    url character varying(255) NOT NULL,
+    tipo integer NOT NULL,
+    created_at timestamp(0) without time zone,
+    updated_at timestamp(0) without time zone
+);
+    DROP TABLE public.apuntes;
+       public         heap    postgres    false            ”            1259    16456    apuntes_id_seq    SEQUENCE     Ü   CREATE SEQUENCE public.apuntes_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+ %   DROP SEQUENCE public.apuntes_id_seq;
+       public          postgres    false    212            ˆ           0    0    apuntes_id_seq    SEQUENCE OWNED BY     A   ALTER SEQUENCE public.apuntes_id_seq OWNED BY public.apuntes.id;
+          public          postgres    false    211            “            1259    16447 
+   contenidos    TABLE     ı   CREATE TABLE public.contenidos (
+    id integer NOT NULL,
+    nombre character varying(255) NOT NULL,
+    contenido character varying(255) NOT NULL,
+    created_at timestamp(0) without time zone,
+    updated_at timestamp(0) without time zone
+);
+    DROP TABLE public.contenidos;
+       public         heap    postgres    false            —            1259    16445    contenidos_id_seq    SEQUENCE     â   CREATE SEQUENCE public.contenidos_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+ (   DROP SEQUENCE public.contenidos_id_seq;
+       public          postgres    false    210            ˜           0    0    contenidos_id_seq    SEQUENCE OWNED BY     G   ALTER SEQUENCE public.contenidos_id_seq OWNED BY public.contenidos.id;
+          public          postgres    false    209            Œ            1259    16425    failed_jobs    TABLE     &  CREATE TABLE public.failed_jobs (
+    id bigint NOT NULL,
+    uuid character varying(255) NOT NULL,
+    connection text NOT NULL,
+    queue text NOT NULL,
+    payload text NOT NULL,
+    exception text NOT NULL,
+    failed_at timestamp(0) without time zone DEFAULT CURRENT_TIMESTAMP NOT NULL
+);
+    DROP TABLE public.failed_jobs;
+       public         heap    postgres    false            Õ            1259    16423    failed_jobs_id_seq    SEQUENCE     {   CREATE SEQUENCE public.failed_jobs_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+ )   DROP SEQUENCE public.failed_jobs_id_seq;
+       public          postgres    false    206            ¯           0    0    failed_jobs_id_seq    SEQUENCE OWNED BY     I   ALTER SEQUENCE public.failed_jobs_id_seq OWNED BY public.failed_jobs.id;
+          public          postgres    false    205            …            1259    16397 
+   migrations    TABLE     á   CREATE TABLE public.migrations (
+    id integer NOT NULL,
+    migration character varying(255) NOT NULL,
+    batch integer NOT NULL
+);
+    DROP TABLE public.migrations;
+       public         heap    postgres    false            »            1259    16395    migrations_id_seq    SEQUENCE     â   CREATE SEQUENCE public.migrations_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+ (   DROP SEQUENCE public.migrations_id_seq;
+       public          postgres    false    201            ˘           0    0    migrations_id_seq    SEQUENCE OWNED BY     G   ALTER SEQUENCE public.migrations_id_seq OWNED BY public.migrations.id;
+          public          postgres    false    200            Ã            1259    16416    password_resets    TABLE     ≠   CREATE TABLE public.password_resets (
+    email character varying(255) NOT NULL,
+    token character varying(255) NOT NULL,
+    created_at timestamp(0) without time zone
+);
+ #   DROP TABLE public.password_resets;
+       public         heap    postgres    false            –            1259    16439    tipo_apuntes    TABLE     »   CREATE TABLE public.tipo_apuntes (
+    id integer NOT NULL,
+    nombre character varying(255) NOT NULL,
+    created_at timestamp(0) without time zone,
+    updated_at timestamp(0) without time zone
+);
+     DROP TABLE public.tipo_apuntes;
+       public         heap    postgres    false            œ            1259    16437    tipo_apuntes_id_seq    SEQUENCE     ã   CREATE SEQUENCE public.tipo_apuntes_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+ *   DROP SEQUENCE public.tipo_apuntes_id_seq;
+       public          postgres    false    208            ˙           0    0    tipo_apuntes_id_seq    SEQUENCE OWNED BY     K   ALTER SEQUENCE public.tipo_apuntes_id_seq OWNED BY public.tipo_apuntes.id;
+          public          postgres    false    207            À            1259    16405    users    TABLE     x  CREATE TABLE public.users (
+    id bigint NOT NULL,
+    name character varying(255) NOT NULL,
+    email character varying(255) NOT NULL,
+    email_verified_at timestamp(0) without time zone,
+    password character varying(255) NOT NULL,
+    remember_token character varying(100),
+    created_at timestamp(0) without time zone,
+    updated_at timestamp(0) without time zone
+);
+    DROP TABLE public.users;
+       public         heap    postgres    false                         1259    16403    users_id_seq    SEQUENCE     u   CREATE SEQUENCE public.users_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+ #   DROP SEQUENCE public.users_id_seq;
+       public          postgres    false    203            ˚           0    0    users_id_seq    SEQUENCE OWNED BY     =   ALTER SEQUENCE public.users_id_seq OWNED BY public.users.id;
+          public          postgres    false    202            O           2604    16461 
+   apuntes id    DEFAULT     h   ALTER TABLE ONLY public.apuntes ALTER COLUMN id SET DEFAULT nextval('public.apuntes_id_seq'::regclass);
+ 9   ALTER TABLE public.apuntes ALTER COLUMN id DROP DEFAULT;
+       public          postgres    false    212    211    212            N           2604    16450    contenidos id    DEFAULT     n   ALTER TABLE ONLY public.contenidos ALTER COLUMN id SET DEFAULT nextval('public.contenidos_id_seq'::regclass);
+ <   ALTER TABLE public.contenidos ALTER COLUMN id DROP DEFAULT;
+       public          postgres    false    210    209    210            K           2604    16428    failed_jobs id    DEFAULT     p   ALTER TABLE ONLY public.failed_jobs ALTER COLUMN id SET DEFAULT nextval('public.failed_jobs_id_seq'::regclass);
+ =   ALTER TABLE public.failed_jobs ALTER COLUMN id DROP DEFAULT;
+       public          postgres    false    206    205    206            I           2604    16400    migrations id    DEFAULT     n   ALTER TABLE ONLY public.migrations ALTER COLUMN id SET DEFAULT nextval('public.migrations_id_seq'::regclass);
+ <   ALTER TABLE public.migrations ALTER COLUMN id DROP DEFAULT;
+       public          postgres    false    200    201    201            M           2604    16442    tipo_apuntes id    DEFAULT     r   ALTER TABLE ONLY public.tipo_apuntes ALTER COLUMN id SET DEFAULT nextval('public.tipo_apuntes_id_seq'::regclass);
+ >   ALTER TABLE public.tipo_apuntes ALTER COLUMN id DROP DEFAULT;
+       public          postgres    false    208    207    208            J           2604    16408    users id    DEFAULT     d   ALTER TABLE ONLY public.users ALTER COLUMN id SET DEFAULT nextval('public.users_id_seq'::regclass);
+ 7   ALTER TABLE public.users ALTER COLUMN id DROP DEFAULT;
+       public          postgres    false    203    202    203            Ô          0    16458    apuntes 
+   TABLE DATA           ^   COPY public.apuntes (id, contenido_id, nombre, url, tipo, created_at, updated_at) FROM stdin;
+    public          postgres    false    212   ∆8       Ì          0    16447 
+   contenidos 
+   TABLE DATA           S   COPY public.contenidos (id, nombre, contenido, created_at, updated_at) FROM stdin;
+    public          postgres    false    210   79       È          0    16425    failed_jobs 
+   TABLE DATA           a   COPY public.failed_jobs (id, uuid, connection, queue, payload, exception, failed_at) FROM stdin;
+    public          postgres    false    206   ê9       ‰          0    16397 
+   migrations 
+   TABLE DATA           :   COPY public.migrations (id, migration, batch) FROM stdin;
+    public          postgres    false    201   ≠9       Á          0    16416    password_resets 
+   TABLE DATA           C   COPY public.password_resets (email, token, created_at) FROM stdin;
+    public          postgres    false    204   I:       Î          0    16439    tipo_apuntes 
+   TABLE DATA           J   COPY public.tipo_apuntes (id, nombre, created_at, updated_at) FROM stdin;
+    public          postgres    false    208   f:       Ê          0    16405    users 
+   TABLE DATA           u   COPY public.users (id, name, email, email_verified_at, password, remember_token, created_at, updated_at) FROM stdin;
+    public          postgres    false    203   £:       ¸           0    0    apuntes_id_seq    SEQUENCE SET     <   SELECT pg_catalog.setval('public.apuntes_id_seq', 4, true);
+          public          postgres    false    211            ˝           0    0    contenidos_id_seq    SEQUENCE SET     ?   SELECT pg_catalog.setval('public.contenidos_id_seq', 4, true);
+          public          postgres    false    209            ˛           0    0    failed_jobs_id_seq    SEQUENCE SET     A   SELECT pg_catalog.setval('public.failed_jobs_id_seq', 1, false);
+          public          postgres    false    205            ˇ           0    0    migrations_id_seq    SEQUENCE SET     ?   SELECT pg_catalog.setval('public.migrations_id_seq', 6, true);
+          public          postgres    false    200                        0    0    tipo_apuntes_id_seq    SEQUENCE SET     A   SELECT pg_catalog.setval('public.tipo_apuntes_id_seq', 5, true);
+          public          postgres    false    207                       0    0    users_id_seq    SEQUENCE SET     :   SELECT pg_catalog.setval('public.users_id_seq', 2, true);
+          public          postgres    false    202            `           2606    16466    apuntes apuntes_pkey 
+   CONSTRAINT     R   ALTER TABLE ONLY public.apuntes
+    ADD CONSTRAINT apuntes_pkey PRIMARY KEY (id);
+ >   ALTER TABLE ONLY public.apuntes DROP CONSTRAINT apuntes_pkey;
+       public            postgres    false    212            ^           2606    16455    contenidos contenidos_pkey 
+   CONSTRAINT     X   ALTER TABLE ONLY public.contenidos
+    ADD CONSTRAINT contenidos_pkey PRIMARY KEY (id);
+ D   ALTER TABLE ONLY public.contenidos DROP CONSTRAINT contenidos_pkey;
+       public            postgres    false    210            X           2606    16434    failed_jobs failed_jobs_pkey 
+   CONSTRAINT     Z   ALTER TABLE ONLY public.failed_jobs
+    ADD CONSTRAINT failed_jobs_pkey PRIMARY KEY (id);
+ F   ALTER TABLE ONLY public.failed_jobs DROP CONSTRAINT failed_jobs_pkey;
+       public            postgres    false    206            Z           2606    16436 #   failed_jobs failed_jobs_uuid_unique 
+   CONSTRAINT     ^   ALTER TABLE ONLY public.failed_jobs
+    ADD CONSTRAINT failed_jobs_uuid_unique UNIQUE (uuid);
+ M   ALTER TABLE ONLY public.failed_jobs DROP CONSTRAINT failed_jobs_uuid_unique;
+       public            postgres    false    206            Q           2606    16402    migrations migrations_pkey 
+   CONSTRAINT     X   ALTER TABLE ONLY public.migrations
+    ADD CONSTRAINT migrations_pkey PRIMARY KEY (id);
+ D   ALTER TABLE ONLY public.migrations DROP CONSTRAINT migrations_pkey;
+       public            postgres    false    201            \           2606    16444    tipo_apuntes tipo_apuntes_pkey 
+   CONSTRAINT     \   ALTER TABLE ONLY public.tipo_apuntes
+    ADD CONSTRAINT tipo_apuntes_pkey PRIMARY KEY (id);
+ H   ALTER TABLE ONLY public.tipo_apuntes DROP CONSTRAINT tipo_apuntes_pkey;
+       public            postgres    false    208            S           2606    16415    users users_email_unique 
+   CONSTRAINT     T   ALTER TABLE ONLY public.users
+    ADD CONSTRAINT users_email_unique UNIQUE (email);
+ B   ALTER TABLE ONLY public.users DROP CONSTRAINT users_email_unique;
+       public            postgres    false    203            U           2606    16413    users users_pkey 
+   CONSTRAINT     N   ALTER TABLE ONLY public.users
+    ADD CONSTRAINT users_pkey PRIMARY KEY (id);
+ :   ALTER TABLE ONLY public.users DROP CONSTRAINT users_pkey;
+       public            postgres    false    203            V           1259    16422    password_resets_email_index    INDEX     X   CREATE INDEX password_resets_email_index ON public.password_resets USING btree (email);
+ /   DROP INDEX public.password_resets_email_index;
+       public            postgres    false    204            Ô   a   xúmÀÀÄ  –3L·Zä¯c/M!Q£b§Í˙:Ä◊óºZ°Z.⁄g!5âŸ¨ë%ù≤•ä”˜üxB√CèÅú∏ÌÅ)3Ö¯ek,ñ¶-±+˙¶Û÷˝ô+≠ıB‰5      Ì   I   xú3·Ã*MÃÀ,I‰LÃ*ŒN…í)ŸYô⁄â@2±8B•$g•§sÍòÈö+òZôZb„ä—„‚‚ 6Áˆ      È      xúã—„‚‚ ≈ ©      ‰   å   xú]ÃA
+É0Ö·µ9Lôâ—÷ª—L¡"&$Ø_-ïTgÒVﬂ?\ib&∞}CõKíòêm?I≈JˇC>¡`SZ}tàí$ó§ﬁìÙ¿æß‰e«Iﬁæ/‹l\3®7 S3uœc∞aô≥ﬂ\Ω6á¸&Á—˘¢€¢Ôª¶-˙ÈÎ„ÁM)ıÏ,U£      Á      xúã—„‚‚ ≈ ©      Î   -   xú3·Ã*MÃÀ,I‰4202‘50”54W00¥25∑21¿&∆£«≈≈ cÒR      Ê   ‘   xúuŒMoÇ0ÄÒs˚)<pïï“Í‡4çƒﬂ2!^:¸+Z†¨X>˝≤„w˝%OÚxËa™4µegŸÎ˛-◊∑R^
+7”%:lêC≠„«løDzÙ7ñ™rÉ5K&]n ˆÉö©˛Sh¢ˆãó»^EÆçæÎ3ªÕ{J®7$£°«îÑ,}˛Ã0E9@s‘MUã
+Y»Nz9YEÀmó¡Ó¥Ò<¶…u˚ˆïajc”˚B]÷Ô*5üe˜©ZeÊœ…x@x»HH«œ\åÒP˚     
