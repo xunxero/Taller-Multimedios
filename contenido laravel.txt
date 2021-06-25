@@ -1,0 +1,108 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\Contenidos;
+use Illuminate\Http\Request;
+
+class ContenidosController extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        $datos['contenidos']=Contenidos::orderBy('id','ASC')->paginate(25);
+        return view('contenidos.index', $datos);
+ 
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        return view('contenidos.create');
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        /*$datosContenido = request()->except('_token');
+        Contenidos::insert($datosContenido);*/
+
+
+        $request->validate([
+            'nombre'=>'required',
+            'contenido'=>'required'
+        ]);
+
+        $contenido = new Contenidos([
+            'nombre'=> $request->get('nombre'),
+            'contenido'=> $request->get('contenido')
+        ]);
+        $contenido->save();
+
+        return redirect('contenido')->with('mensaje','Contenido Agregado con exito');
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Models\Contenidos  $contenidos
+     * @return \Illuminate\Http\Response
+     */
+    public function show(Contenidos $contenidos)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\Models\Contenidos  $contenidos
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        $contenidos=Contenidos::findOrFail($id);
+        return view('contenidos.edit', compact('contenidos'));
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Contenidos  $contenidos
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        $datosContenido = request()->except('_token','_method');
+        Contenidos::where('id','=',$id)->update($datosContenido);
+
+        $contenidos=Contenidos::findOrFail($id);
+        return view('contenidos.edit', compact('contenidos'));
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Models\Contenidos  $contenidos
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        Contenidos::destroy($id);
+        return redirect('contenido')->with('mensaje','Contenido Borrado con exito');
+    }
+}
